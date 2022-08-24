@@ -43,7 +43,7 @@ public class MemberController {
     @ApiOperation(value = "to get the Bills for the User")
     @GetMapping(value="/viewBills/{memberId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bills> getBills( @PathVariable("memberId") String memberId,
-            @RequestHeader(name = "Authorization", required = true)String token) throws InvalidTokenException
+            @RequestHeader(name="Authorization", required=true) String token) throws InvalidTokenException
     {
         log.info("Inside the getBills EndPoint : Begin");
         

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -33,7 +34,7 @@ class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 			                "/configuration/ui",
 			                "/swagger-resources/**",
 			                "/configuration/security",
-			                "/swagger-ui.html",
+			                "/swagger-ui/**","/v3/**",
 			                "/webjars/**").permitAll()
 					.anyRequest().authenticated()
 					.and().sessionManagement()
@@ -54,6 +55,11 @@ class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception{
 		return super.authenticationManager();
+	}
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/v2/api-docs","/configuration/ui","/auth/db/**",
+				"/swagger-resources/**","/configuration/security","/swagger-ui.html","/webjars/**","/auth/swagger");
 	}
 	
 }

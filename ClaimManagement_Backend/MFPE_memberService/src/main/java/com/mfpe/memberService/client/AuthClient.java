@@ -8,7 +8,8 @@ import com.mfpe.memberService.dto.ValidatingDTO;
 
 
 
-@FeignClient(name = "auth-client", url = "${Authorization.URL}")
+//@FeignClient(name = "auth-client", url = "${Authorization.URL}")
+@FeignClient(name ="AUTHORIZATION-SERVICE/authorization")
 public interface AuthClient {
 	
 	 @GetMapping(value = "/validate")

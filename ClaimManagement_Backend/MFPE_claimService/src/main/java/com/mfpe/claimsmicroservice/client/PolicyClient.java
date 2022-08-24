@@ -13,7 +13,8 @@ import com.mfpe.claimsmicroservice.dto.ClaimAmountDTO;
 import com.mfpe.claimsmicroservice.dto.ProviderDTO;
 
 
-@FeignClient(name = "policy-service", url = "${Policy.URL}")
+//@FeignClient(name = "policy-service", url = "${Policy.URL}")
+@FeignClient(name = "POLICY-SERVICE/policy")
 public interface PolicyClient {
 	@GetMapping(path="/getChainOfProviders/{policyId}")
 	public ResponseEntity<ProviderDTO> getChainOfProviders(@PathVariable String policyId,@RequestHeader(name = "Authorization", required = true) String token);
